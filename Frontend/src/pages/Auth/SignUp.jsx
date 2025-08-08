@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Input from "../../components/Inputs/Input"; 
+import Input from "../../components/Inputs/Input";
 import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
 import ProfilePhotoSelector from "../../components/Inputs/ProfilePhotoSelector";
@@ -20,6 +20,8 @@ const SignUp = ({ setCurrentPage }) => {
   const { updateUser } = useContext(UserContext);
   const navigate = useNavigate();
 
+  // Handle Sign Up Function
+  // This function handles the sign-up process, including form validation and API calls.
   const handleSignUp = async (e) => {
     e.preventDefault();
 
@@ -29,7 +31,7 @@ const SignUp = ({ setCurrentPage }) => {
     // upload image if present
     let profileImageUrl = "";
 
-    // signUp ApI Call
+    // signUp Api Call
     try {
       if (profilePic) {
         const imgUploadRes = await uploadImage(profilePic);

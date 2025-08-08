@@ -15,6 +15,8 @@ const Login = ({ setCurrentPage }) => {
 
   const navigate = useNavigate();
 
+  // Handle Login Function
+  // This function handles the login process, including form validation and API calls.
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -33,7 +35,8 @@ const Login = ({ setCurrentPage }) => {
     }
     setError("");
 
-// Login Api Called
+    // Login Api Called
+    // This part sends the login request to the server and handles the response.
     try {
       const response = await axiosInstance.post(API_PATHS.AUTH.LOGIN, {
         email,
@@ -98,6 +101,7 @@ const Login = ({ setCurrentPage }) => {
           </button>
         </p>
       </form>
+      
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React from "react";
 
 const Model = ({ children, isOpen, onClose, title, hideHeader }) => {
-  if (!isOpen) return null; 
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex justify-center items-center w-full h-full bg-black/40">
@@ -14,7 +14,11 @@ const Model = ({ children, isOpen, onClose, title, hideHeader }) => {
           </div>
         )}
 
-        <button type="button" className="text-gray-400 bg-transparent hover:bg-orange-100 hover:text-gray-900 rounded-lg text-sm w-8 h-8 justify-center items-center absolute top-3.5 right-3.5 cursor-pointer" onClick={onClose}>
+        <button
+          type="button"
+          className="text-gray-400 bg-transparent hover:bg-orange-100 hover:text-gray-900 rounded-lg text-sm w-8 h-8 justify-center items-center absolute top-3.5 right-3.5 cursor-pointer"
+          onClick={onClose}
+        >
           <svg
             className="w-3 h-3"
             aria-hidden="true"
@@ -33,9 +37,9 @@ const Model = ({ children, isOpen, onClose, title, hideHeader }) => {
         </button>
 
         {/* Model Body (scrollable) */}
-        <div className="flex-1 overflow-y-auto custom-scrollbar">{children}
+        <div className="flex-1 overflow-y-auto custom-scrollbar">
+          {children}
         </div>
-
       </div>
     </div>
   );

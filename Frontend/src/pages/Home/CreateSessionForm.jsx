@@ -44,10 +44,11 @@ const CreateSessionForm = () => {
           role,
           experience,
           topicsToFocus,
-          numberOfQuestions: 10,
+          numberOfQuestions: 30,
         }
       );
 
+        console.log("AI Response:", aiResponse);
       // Extract only the data (array of questions)
       const generatedQuestions = aiResponse.data?.data || [];
 

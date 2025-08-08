@@ -18,11 +18,11 @@ const ProfilePhotoSelector = ({ image, setImage, preview, setPreview }) => {
     const file = event.target.files[0];
     if (file) {
       setImage(file);
-      const url = URL.createObjectURL(file);
+      const preview = URL.createObjectURL(file);
       if (setPreview) {
-        setPreview(url);
+        setPreview(preview);
       }
-      setPreviewUrl(url);
+      setPreviewUrl(preview);
     }
   };
 

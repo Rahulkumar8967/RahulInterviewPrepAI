@@ -2,6 +2,7 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken")
 
+// node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
 // Generate JWT Token
 const generateToken = (userId) => {
   return jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn: "7d" });
@@ -33,11 +34,6 @@ const registerUser = async (req, res) => {
       password: hashedPassword,
       profileImageUrl,
     });
-
-    // Generate JWT token
-    // const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-    //   expiresIn: "30d",
-    // });
 
     // return  user data and token
     res.status(201).json({

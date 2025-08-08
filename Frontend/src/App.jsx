@@ -7,12 +7,13 @@ import Login from "./pages/Auth/Login";
 import SignUp from "./pages/Auth/SignUp";
 import Dashboard from "./pages/Home/Dashboard";
 import InterviewPrep from "./pages/InterviewPrep/InterviewPrep";
-import userProvider from "./context/userContext";
+import UserProvider from "./context/userContext";
+
 
 //  image upload problem in signup, load more question functionality in future
 const App = () => {
   return (
-    <userProvider>
+    <UserProvider>
     <div>
       <Router>
         <Routes>
@@ -42,7 +43,7 @@ const App = () => {
           }}   
       />
     </div>
-    </userProvider>
+    </UserProvider>
   );
 };
 

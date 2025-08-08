@@ -43,7 +43,7 @@ const QuestionCard = ({
             aria-controls={`answer-content-${question}`}
             onClick={toggleExpand}
             onKeyDown={handleKeyDown}
-            className="text-sm md:text-base font-medium text-gray-800 focus:outline-none focus:ring-2 focus:ring-cyan-400 rounded cursor-pointer line-clamp-3 cursor-pointer"
+            className="text-sm md:text-base font-medium text-gray-800 focus:outline-none focus:ring-2 focus:ring-cyan-400 rounded  line-clamp-3 cursor-pointer"
           >
             {question}
           </h3>

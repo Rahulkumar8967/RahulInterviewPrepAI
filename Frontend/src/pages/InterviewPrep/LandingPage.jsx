@@ -35,7 +35,7 @@ const LandingPage = () => {
             <div className="text-xl text-black font-bold">
               Interview Prep AI
             </div>
-
+            
             {user ? (
               <ProfileInfoCard />
             ) : (
@@ -93,8 +93,8 @@ const LandingPage = () => {
       {/* Features Section */}
       <div className="w-full bg-[#FFFCEF]">
         <div className="container mx-auto px-4 pt-10 pb-8">
-          <h2 className="text-2xl font-medium text-center mb-12">
-            Features That Make You Shine
+          <h2 className="text-2xl font-medium text-center mb-12  *:text-amber-800 hover:text-amber-600 transition-colors">
+            <span className="text-amber-600">Features</span> That Make You Shine
           </h2>
 
           <div className="flex flex-col items-center gap-8">
@@ -131,9 +131,13 @@ const LandingPage = () => {
         </div>
       </div>
 
+      <div className="text-sm  text-pink-600 text-center py-4 mt-8 bg-blend-darken bg-gradient-to-r from-pink-100 to-pink-200">
+        &copy; {new Date().getFullYear()} InterviewPrepAI. All rights reserved.
+      </div>
+
       {/* Auth Modal */}
       {openAuthModel && (
-        <Model onClose={() => setOpenAuthModel(false)}>
+        <Model isOpen={true} onClose={() => setOpenAuthModel(false)}>
           {currentPage === "login" ? (
             <Login setCurrentPage={setCurrentPage} />
           ) : (
