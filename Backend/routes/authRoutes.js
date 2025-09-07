@@ -1,5 +1,4 @@
 const express = require("express");
-
 const {
   registerUser,
   loginUser,
@@ -10,12 +9,18 @@ const { protect } = require("../middlewares/authMiddleware");
 const upload = require("../middlewares/uploadMiddleware");
 
 const router = express.Router();
-// Auth Routes
-router.post("/register", registerUser); // Register User
-router.post("/login", loginUser); // Login User
-router.get("/profile", protect, getUserProfile); // Get User Profile
 
+// ✅ Register with normal request (without image)
+// image will be uploaded separately
+router.post("/register", registerUser);
 
+// Login
+router.post("/login", loginUser);
+
+// Get profile
+router.get("/profile", protect, getUserProfile);
+
+// ✅ Separate image upload route
 router.post("/upload-image", upload.single("image"), (req, res) => {
   if (!req.file) {
     return res.status(400).json({ message: "No file uploaded" });
@@ -26,7 +31,5 @@ router.post("/upload-image", upload.single("image"), (req, res) => {
   }`;
   res.status(200).json({ imageUrl });
 });
-
-
 
 module.exports = router;

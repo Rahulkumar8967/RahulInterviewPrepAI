@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Input from "../../components/Inputs/Input";
 import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
 import ProfilePhotoSelector from "../../components/Inputs/ProfilePhotoSelector";
-import { useContext } from "react";
 import { UserContext } from "../../context/userContext";
 import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
 import uploadImage from "../../utils/uploadImage";
+import SpinnerLoader from "../../components/Loader/SpinnerLoader";
+
 
 const SignUp = ({ setCurrentPage }) => {
   const [profilePic, setProfilePic] = useState(null);
@@ -16,23 +17,25 @@ const SignUp = ({ setCurrentPage }) => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false); 
 
   const { updateUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   // Handle Sign Up Function
-  // This function handles the sign-up process, including form validation and API calls.
   const handleSignUp = async (e) => {
     e.preventDefault();
 
     if (!fullName || !email || !password) {
       return setError("All fields are required");
     }
-    // upload image if present
+
     let profileImageUrl = "";
 
-    // signUp Api Call
     try {
+      setLoading(true); 
+      setError("");
+
       if (profilePic) {
         const imgUploadRes = await uploadImage(profilePic);
         profileImageUrl = imgUploadRes.imageurl || "";
@@ -57,6 +60,8 @@ const SignUp = ({ setCurrentPage }) => {
       } else {
         setError("SignUp failed. Please try again.");
       }
+    } finally {
+      setLoading(false); 
     }
   };
 
@@ -70,7 +75,7 @@ const SignUp = ({ setCurrentPage }) => {
       </p>
 
       <form onSubmit={handleSignUp}>
-        <ProfilePhotoSelector image={profilePic} setImage={setProfilePic} />
+        <ProfilePhotoSelector image={profilePic} setImage={setProfilePic}  />
         <div className="space-y-4">
           <Input
             label="Full Name"
@@ -108,9 +113,10 @@ const SignUp = ({ setCurrentPage }) => {
 
           <button
             type="submit"
-            className="w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-md transition cursor-pointer"
+            className="w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-md transition cursor-pointer flex items-center justify-center"
+            disabled={loading} 
           >
-            SIGN UP
+            {loading ? <SpinnerLoader size={20} color="#fff" /> : "SIGN UP"}
           </button>
 
           <p className="text-center text-10px mt-0 text-slate-600">

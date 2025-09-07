@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { LuUser, LuUpload, LuTrash } from "react-icons/lu";
 
-const ProfilePhotoSelector = ({ image, setImage, preview, setPreview }) => {
+const ProfilePhotoSelector = ({ image, setImage, preview, setPreview, userName }) => {
   const inputRef = useRef(null);
   const [previewUrl, setPreviewUrl] = useState(null);
 
@@ -38,6 +38,9 @@ const ProfilePhotoSelector = ({ image, setImage, preview, setPreview }) => {
     inputRef.current.click();
   };
 
+  // Agar image nahi hai to first letter of name nikal lo
+  const firstLetter = userName ? userName.charAt(0).toUpperCase() : null;
+
   return (
     <div className="flex flex-col items-center mb-5">
       <input
@@ -50,7 +53,11 @@ const ProfilePhotoSelector = ({ image, setImage, preview, setPreview }) => {
 
       {!image ? (
         <div className="w-24 h-24 rounded-full border border-gray-300 flex items-center justify-center bg-gray-100 mb-2">
-          <LuUser className="text-gray-400 text-4xl" />
+          {firstLetter ? (
+            <span className="text-3xl font-bold text-gray-600">{firstLetter}</span>
+          ) : (
+            <LuUser className="text-gray-400 text-4xl" />
+          )}
         </div>
       ) : (
         <div className="relative w-24 h-24 mb-2">

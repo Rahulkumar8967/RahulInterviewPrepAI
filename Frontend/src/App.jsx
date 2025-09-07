@@ -14,24 +14,21 @@ import UserProvider from "./context/userContext";
 const App = () => {
   return (
     <UserProvider>
+
     <div>
       <Router>
         <Routes>
           {/* Default Route */}
           <Route path="/" element={<LandingPage />} />
-
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-
           <Route path="/dashboard" element={<Dashboard />} />
           <Route
             path="/interview-prep/:sessionId"
             element={<InterviewPrep />}
           />
-          
         </Routes>
       </Router>
-
 
       <Toaster
         toastOptions={
@@ -42,7 +39,8 @@ const App = () => {
             },
           }}   
       />
-    </div>
+      </div>
+      
     </UserProvider>
   );
 };

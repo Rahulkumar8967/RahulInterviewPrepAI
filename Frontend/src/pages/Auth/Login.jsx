@@ -1,22 +1,22 @@
-import React, { useContext, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import Input from '../../components/Inputs/Input';
-import axiosInstance from '../../utils/axiosInstance';
-import { API_PATHS } from '../../utils/apiPaths';
-import { UserContext } from '../../context/userContext';
+import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Input from "../../components/Inputs/Input";
+import axiosInstance from "../../utils/axiosInstance";
+import { API_PATHS } from "../../utils/apiPaths";
+import { UserContext } from "../../context/userContext";
+import SpinnerLoader from "../../components/Loader/SpinnerLoader";
 
 
 const Login = ({ setCurrentPage }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState();
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false); 
 
   const { updateUser } = useContext(UserContext);
-
   const navigate = useNavigate();
 
   // Handle Login Function
-  // This function handles the login process, including form validation and API calls.
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -35,9 +35,9 @@ const Login = ({ setCurrentPage }) => {
     }
     setError("");
 
-    // Login Api Called
-    // This part sends the login request to the server and handles the response.
     try {
+      setLoading(true);
+
       const response = await axiosInstance.post(API_PATHS.AUTH.LOGIN, {
         email,
         password,
@@ -52,13 +52,14 @@ const Login = ({ setCurrentPage }) => {
       }
     } catch (err) {
       if (err.response && err.response.data.message) {
-        setError(err.response.data. message);
+        setError(err.response.data.message);
       } else {
         setError("Login failed. Please try again.");
       }
+    } finally {
+      setLoading(false); 
     }
   };
-  
 
   return (
     <div className="w-[90vw] md:w-[33vw] p-7 flex flex-col justify-center">
@@ -83,13 +84,17 @@ const Login = ({ setCurrentPage }) => {
           placeholder="Min 8 Characters"
           type="password"
         />
+
         {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+
         <button
           type="submit"
-          className="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition cursor-pointer"
+          disabled={loading} 
+          className="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition cursor-pointer flex items-center justify-center"
         >
-          LOGIN
+          {loading ? <SpinnerLoader size={20} color="#fff" /> : "LOGIN"}
         </button>
+
         <p className="text-12px text-pink-700 mt-4 text-center">
           Don't have an account?{" "}
           <button
@@ -101,9 +106,8 @@ const Login = ({ setCurrentPage }) => {
           </button>
         </p>
       </form>
-      
     </div>
   );
-}
+};
 
-export default Login
+export default Login;
