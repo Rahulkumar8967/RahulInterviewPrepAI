@@ -103,6 +103,8 @@ const Login = ({ setCurrentPage }) => {
           >
             SignUp
           </button>
+          <p>email: saini@test.com</p>
+          <p>password: 12345678</p>
         </p>
       </form>
     </div>
