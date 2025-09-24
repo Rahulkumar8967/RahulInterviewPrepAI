@@ -26,8 +26,10 @@ const LandingPage = () => {
   return (
     <>
       {/* Background and Hero Section */}
-      <div className="w-full bg-[#FFFCEF] relative">
-        <div className="w-[500px] h-[500px] bg-amber-200/20 blur-[65px] absolute top-0 left-0 z-0" />
+      {/* Added overflow-hidden to prevent horizontal scrolling */}
+      <div className="w-full bg-[#FFFCEF] relative overflow-hidden">
+        {/* Changed from w-[500px] to w-full max-w-lg for responsiveness */}
+        <div className="w-full max-w-lg h-[500px] bg-amber-200/20 blur-[65px] absolute top-0 left-0 z-0" />
 
         <div className="container mx-auto px-4 pt-6 pb-12 relative z-10">
           {/* Header */}
