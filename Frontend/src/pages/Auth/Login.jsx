@@ -6,12 +6,11 @@ import { API_PATHS } from "../../utils/apiPaths";
 import { UserContext } from "../../context/userContext";
 import SpinnerLoader from "../../components/Loader/SpinnerLoader";
 
-
 const Login = ({ setCurrentPage }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
 
   const { updateUser } = useContext(UserContext);
   const navigate = useNavigate();
@@ -57,12 +56,12 @@ const Login = ({ setCurrentPage }) => {
         setError("Login failed. Please try again.");
       }
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
 
   return (
-    <div className="w-[90vw] md:w-[33vw] p-7 flex flex-col justify-center">
+    <div className="w-full max-w-lg p-7 mx-auto flex flex-col justify-center">
       <h3 className="text-2xl font-bold text-gray-800 mb-2">Welcome Back 👋</h3>
       <p className="text-sm text-gray-600 mb-6">
         Please enter your details to log in.
@@ -89,7 +88,7 @@ const Login = ({ setCurrentPage }) => {
 
         <button
           type="submit"
-          disabled={loading} 
+          disabled={loading}
           className="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition cursor-pointer flex items-center justify-center"
         >
           {loading ? <SpinnerLoader size={20} color="#fff" /> : "LOGIN"}

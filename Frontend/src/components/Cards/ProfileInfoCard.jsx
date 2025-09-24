@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
+import { UserCircle } from "lucide-react";
 
 const ProfileInfoCard = () => {
   const { user, clearUser } = useContext(UserContext);
@@ -12,28 +13,37 @@ const ProfileInfoCard = () => {
     navigate("/");
   };
 
-  return (
-    user && (
-      <div className="flex items-center">
-        <img
-          src={user.profileImageUrl || "/default-profile.png"}
-          alt={`${user.name || "User"}'s profile`}
-          className="w-11 h-11 bg-gray-300 rounded-full mr-3"
-        />
+  if (!user) {
+    return null;
+  }
 
-        <div>
-          <div className="text-[15px] text-black font-bold leading-3">
-            {user.name || ""}
-          </div>
-          <button
-            className="text-amber-600 text-sm font-semibold cursor-pointer hover:underline"
-            onClick={handleLogout}
-          >
-            Logout
-          </button>
+  return (
+    <div className="flex items-center gap-3">
+      {user.profileImageUrl ? (
+        <img
+          src={user.profileImageUrl}
+          alt={`${user.name || "User"}'s profile`}
+          className="w-11 h-11 rounded-full object-cover border-2 border-blue-500 hover:border-blue-600 transition-colors cursor-pointer"
+        />
+      ) : (
+        <UserCircle
+          size={44} // Matches the 11 Tailwind units (44px)
+          className="text-gray-400 hover:text-gray-500 transition-colors cursor-pointer"
+        />
+      )}
+
+      <div>
+        <div className="text-[15px] text-black font-bold leading-3">
+          {user.name || "User"}
         </div>
+        <button
+          className="text-amber-600 text-sm font-semibold cursor-pointer hover:underline"
+          onClick={handleLogout}
+        >
+          Logout
+        </button>
       </div>
-    )
+    </div>
   );
 };
 

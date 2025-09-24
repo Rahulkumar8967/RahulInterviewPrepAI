@@ -9,7 +9,6 @@ import { API_PATHS } from "../../utils/apiPaths";
 import uploadImage from "../../utils/uploadImage";
 import SpinnerLoader from "../../components/Loader/SpinnerLoader";
 
-
 const SignUp = ({ setCurrentPage }) => {
   const [profilePic, setProfilePic] = useState(null);
   const [fullName, setFullName] = useState("");
@@ -17,7 +16,7 @@ const SignUp = ({ setCurrentPage }) => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
 
   const { updateUser } = useContext(UserContext);
   const navigate = useNavigate();
@@ -33,7 +32,7 @@ const SignUp = ({ setCurrentPage }) => {
     let profileImageUrl = "";
 
     try {
-      setLoading(true); 
+      setLoading(true);
       setError("");
 
       if (profilePic) {
@@ -61,12 +60,12 @@ const SignUp = ({ setCurrentPage }) => {
         setError("SignUp failed. Please try again.");
       }
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
 
   return (
-    <div className="w-[90vw] md:w-[33vw] p-7 flex flex-col justify-center">
+    <div className="w-full max-w-lg p-7 mx-auto flex flex-col justify-center">
       <h3 className="text-xl font-semibold text-black mb-1 flex items-center gap-1">
         Create an Account 🚀
       </h3>
@@ -75,7 +74,7 @@ const SignUp = ({ setCurrentPage }) => {
       </p>
 
       <form onSubmit={handleSignUp}>
-        <ProfilePhotoSelector image={profilePic} setImage={setProfilePic}  />
+        <ProfilePhotoSelector image={profilePic} setImage={setProfilePic} />
         <div className="space-y-4">
           <Input
             label="Full Name"
@@ -114,7 +113,7 @@ const SignUp = ({ setCurrentPage }) => {
           <button
             type="submit"
             className="w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-md transition cursor-pointer flex items-center justify-center"
-            disabled={loading} 
+            disabled={loading}
           >
             {loading ? <SpinnerLoader size={20} color="#fff" /> : "SIGN UP"}
           </button>
