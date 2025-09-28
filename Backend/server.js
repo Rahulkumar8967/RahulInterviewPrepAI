@@ -11,13 +11,14 @@ const { protect } = require("./middlewares/authMiddleware");
 const { generateInterviewQuestions, generateConceptExplanation } = require("./controllers/aiController");
 
 const app = express();
-
+const allowedOrigin = process.env.FRONTEND_URL || "http://localhost:5173";
 // Middleware to handle CORS
 app.use(
   cors({
-    origin:"*",
+    origin: allowedOrigin,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
   })
 );
 
