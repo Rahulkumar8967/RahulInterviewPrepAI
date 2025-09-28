@@ -48,7 +48,7 @@ const CreateSessionForm = () => {
         }
       );
 
-        console.log("AI Response:", aiResponse);
+      console.log("AI Response:", aiResponse);
       // Extract only the data (array of questions)
       const generatedQuestions = aiResponse.data?.data || [];
 

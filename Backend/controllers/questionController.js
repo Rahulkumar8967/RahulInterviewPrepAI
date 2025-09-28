@@ -2,7 +2,7 @@ const Question = require("../models/Question");
 const Session = require("../models/Session");
 
 // @desc Add additional questions to an existing session
-// @route POST/api/question/add
+// @route POST/api/questions/add
 // @access Private
 exports.addQuestionsToSession = async (req, res) => {
   try {
@@ -49,7 +49,7 @@ exports.addQuestionsToSession = async (req, res) => {
 
 
 // @desc Pin or unpin a question
-// @route POST/ api/ question/:id/pin
+// @route POST/ api/ questions/:id/pin
 // @access Private
 exports.togglePinQuestion = async (req, res) => {
   try {
@@ -75,7 +75,7 @@ exports.togglePinQuestion = async (req, res) => {
  };
 
 // @desc update a note for a question
-// @route POST /api/question/:id/note
+// @route POST /api/questions/:id/note
 // @access Private
 exports.updateQuestionNote = async (req, res) => {
   try {
